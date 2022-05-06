@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -24,7 +23,7 @@ import com.example.firebasefirsttry.utils.TYPE_ROOM
 
 
 @Composable
-fun StartScreen(navController: NavHostController) {
+fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
 
     val context = LocalContext.current
     val nViewModel: MainViewModel =
@@ -70,6 +69,9 @@ fun StartScreen(navController: NavHostController) {
 @Composable
 fun prevStartScreen(){
     FirebaseFirstTryTheme {
-        StartScreen(navController = rememberNavController())
+        val context = LocalContext.current
+        val nViewModel: MainViewModel =
+            viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
+        StartScreen(navController = rememberNavController(), viewModel = nViewModel)
     }
 }
