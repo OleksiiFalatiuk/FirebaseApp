@@ -28,6 +28,7 @@ import com.example.firebasefirsttry.MainViewModelFactory
 import com.example.firebasefirsttry.model.Note
 import com.example.firebasefirsttry.navigation.NavRoute
 import com.example.firebasefirsttry.ui.theme.FirebaseFirstTryTheme
+import com.example.firebasefirsttry.utils.Constants.Keys.ID
 
 
 @Composable
@@ -59,7 +60,7 @@ fun NoteItem(note: Note, navController: NavHostController){
             .fillMaxWidth()
             .padding(vertical = 8.dp, horizontal = 24.dp)
             .clickable {
-                navController.navigate(NavRoute.Note.route)
+                navController.navigate(NavRoute.Note.route + "/${note.id}")
 
             },
         elevation = 6.dp
