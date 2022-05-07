@@ -4,12 +4,14 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.firebasefirsttry.database.firebase.FirebaseRepository
 import com.example.firebasefirsttry.database.room.AppRoomDatabase
 import com.example.firebasefirsttry.database.room.repository.RoomRepository
 import com.example.firebasefirsttry.model.Note
 import com.example.firebasefirsttry.utils.REPOSITORY
 import com.example.firebasefirsttry.utils.TYPE_FIREBASE
 import com.example.firebasefirsttry.utils.TYPE_ROOM
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -18,12 +20,19 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     val context = application
 
     fun initDatabase(type: String, onSuccess: () -> Unit){
-        Log.d("checkdata", type)
+        Log.d("checkData", type)
         when(type){
             TYPE_ROOM -> {
                 val dao = AppRoomDatabase.getInstance(context = context).getRoomDao()
                 REPOSITORY = RoomRepository(dao)
                 onSuccess()
+            }
+            TYPE_FIREBASE -> {
+                REPOSITORY = FirebaseRepository()
+                REPOSITORY.connectToDatabase(
+                    {onSuccess()},
+                    {Log.d("checkdata", "Error $it")}
+                )
             }
         }
     }
