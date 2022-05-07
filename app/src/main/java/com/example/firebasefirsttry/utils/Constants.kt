@@ -5,6 +5,7 @@ import com.example.firebasefirsttry.database.DatabaseRepository
 const val TYPE_DATABASE = "type_database"
 const val TYPE_ROOM = "type_room"
 const val TYPE_FIREBASE = "type_firebase"
+const val FIREBASE_ID = "firebase_id"
 
 lateinit var REPOSITORY: DatabaseRepository
 lateinit var LOGIN: String
@@ -18,9 +19,9 @@ object Constants {
         const val NOTE_TITLE = "Note title"
         const val NOTE_SUBTITLE = "Note subtitle"
         const val ADD_NOTE = "Add note"
-        const val TITLE = "Title"
+        const val TITLE = "title"
         const val LOGIN = "login"
-        const val SUBTITLE = "Subtitle"
+        const val SUBTITLE = "subtitle"
         const val PASSWORD = "password"
         const val WHAT_WILL_WE_USE = "What will we use?"
         const val ROOM_DATABASE = "Room database"
