@@ -3,6 +3,7 @@ package com.example.firebasefirsttry
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.firebasefirsttry.database.room.AppRoomDatabase
 import com.example.firebasefirsttry.database.room.repository.RoomRepository
 import com.example.firebasefirsttry.model.Note
@@ -30,6 +31,26 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     fun addNote(note: Note, onSuccess: () -> Unit){
         viewModelScope.launch(Dispatchers.IO) {
             REPOSITORY.create(note = note){
+                viewModelScope.launch(Dispatchers.Main) {
+                    onSuccess()
+                }
+            }
+        }
+    }
+
+    fun updateNote(note: Note, onSuccess: () -> Unit){
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.update(note = note){
+                viewModelScope.launch(Dispatchers.Main) {
+                    onSuccess()
+                }
+            }
+        }
+    }
+
+    fun deleteNote(note: Note, onSuccess: () -> Unit){
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.delete(note = note){
                 viewModelScope.launch(Dispatchers.Main) {
                     onSuccess()
                 }
