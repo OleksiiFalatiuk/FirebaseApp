@@ -19,9 +19,9 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
 
     val context = application
 
-    fun initDatabase(type: String, onSuccess: () -> Unit){
-        Log.d("checkData", type)
-        when(type){
+    fun initDatabase(type: String, onSuccess: ()-> Unit) {
+        Log.d("checkData", "MainViewModel initDatabase with type: $type")
+        when(type) {
             TYPE_ROOM -> {
                 val dao = AppRoomDatabase.getInstance(context = context).getRoomDao()
                 REPOSITORY = RoomRepository(dao)
@@ -30,8 +30,8 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
             TYPE_FIREBASE -> {
                 REPOSITORY = FirebaseRepository()
                 REPOSITORY.connectToDatabase(
-                    {onSuccess()},
-                    {Log.d("checkdata", "Error $it")}
+                    { onSuccess() },
+                    { Log.d("checkData", "Error: ${it}")}
                 )
             }
         }

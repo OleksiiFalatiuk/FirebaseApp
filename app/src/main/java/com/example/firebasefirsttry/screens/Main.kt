@@ -28,7 +28,11 @@ import com.example.firebasefirsttry.MainViewModelFactory
 import com.example.firebasefirsttry.model.Note
 import com.example.firebasefirsttry.navigation.NavRoute
 import com.example.firebasefirsttry.ui.theme.FirebaseFirstTryTheme
+import com.example.firebasefirsttry.utils.Constants.Keys.EMPTY
 import com.example.firebasefirsttry.utils.Constants.Keys.ID
+import com.example.firebasefirsttry.utils.DB_TYPE
+import com.example.firebasefirsttry.utils.TYPE_FIREBASE
+import com.example.firebasefirsttry.utils.TYPE_ROOM
 
 
 @Composable
@@ -55,12 +59,20 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
 
 @Composable
 fun NoteItem(note: Note, navController: NavHostController){
+
+    val noteId = when(DB_TYPE){
+        TYPE_FIREBASE -> note.firebaseId
+        TYPE_ROOM -> note.id
+        else -> EMPTY
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp, horizontal = 24.dp)
             .clickable {
-                navController.navigate(NavRoute.Note.route + "/${note.id}")
+                navController.navigate(NavRoute.Note.route + "/{${noteId}}")
+
 
             },
         elevation = 6.dp
