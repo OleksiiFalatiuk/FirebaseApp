@@ -39,7 +39,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:331525429761:android:f2cda680916bc5ccc23e00",
         "android_client_info": {
-          "package_name": "ru.mvlikhachev.notesappmvvm"
+          "package_name": "com.example.firebasefirsttry"
         }
       },
       "oauth_client": [

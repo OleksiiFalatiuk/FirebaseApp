@@ -8,6 +8,8 @@ import com.example.firebasefirsttry.database.firebase.FirebaseRepository
 import com.example.firebasefirsttry.database.room.AppRoomDatabase
 import com.example.firebasefirsttry.database.room.repository.RoomRepository
 import com.example.firebasefirsttry.model.Note
+import com.example.firebasefirsttry.utils.Constants.Keys.EMPTY
+import com.example.firebasefirsttry.utils.DB_TYPE
 import com.example.firebasefirsttry.utils.REPOSITORY
 import com.example.firebasefirsttry.utils.TYPE_FIREBASE
 import com.example.firebasefirsttry.utils.TYPE_ROOM
@@ -64,6 +66,18 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
                     onSuccess()
                 }
             }
+        }
+    }
+
+    fun signOut(onSuccess: () -> Unit){
+        when(DB_TYPE.value){
+            TYPE_FIREBASE,
+                TYPE_ROOM -> {
+                    REPOSITORY.signOut()
+                DB_TYPE.value = EMPTY
+                onSuccess()
+                }
+            else -> { Log.d("checkData,", "ELSE: ${DB_TYPE}") }
         }
     }
 

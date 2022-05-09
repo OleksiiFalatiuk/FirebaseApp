@@ -1,6 +1,7 @@
 package com.example.firebasefirsttry.database.room
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -8,7 +9,8 @@ import com.example.firebasefirsttry.database.room.dao.NoteRoomDao
 import com.example.firebasefirsttry.model.Note
 import com.example.firebasefirsttry.utils.Constants.Keys.NOTE_DATABASE
 
-@Database(entities = [Note::class], version = 1)
+@Database(entities = [Note::class], version = 1
+)
 abstract class AppRoomDatabase : RoomDatabase(){
     abstract fun getRoomDao(): NoteRoomDao
 
