@@ -71,7 +71,7 @@ fun NoteItem(note: Note, navController: NavHostController){
             .fillMaxWidth()
             .padding(vertical = 8.dp, horizontal = 24.dp)
             .clickable {
-                navController.navigate(NavRoute.Note.route + "/{${noteId}}")
+                navController.navigate(NavRoute.Note.route + "/${noteId}")
 
 
             },

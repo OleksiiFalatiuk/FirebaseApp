@@ -9,7 +9,10 @@ import com.example.firebasefirsttry.database.room.dao.NoteRoomDao
 import com.example.firebasefirsttry.model.Note
 import com.example.firebasefirsttry.utils.Constants.Keys.NOTE_DATABASE
 
-@Database(entities = [Note::class], version = 1
+@Database(entities = [Note::class], version = 2, exportSchema = true,
+    autoMigrations = [
+        AutoMigration(from = 1, to = 2)
+    ]
 )
 abstract class AppRoomDatabase : RoomDatabase(){
     abstract fun getRoomDao(): NoteRoomDao
